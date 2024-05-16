@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post
 
@@ -6,4 +6,8 @@ from .models import Post
 # Create your views here.
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    return render(request, '/Users/tanyamoon/PycharmProjects/dev_blog/templates/post_list', {'posts':posts})
+    return render(request, '/Users/tanyamoon/PycharmProjects/dev_blog/templates/post_list.html', {'posts':posts})
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, '/Users/tanyamoon/PycharmProjects/dev_blog/templates/base.html', {'post': post})
