@@ -1,7 +1,6 @@
 *.pyc
 *~
 __pycache__
-dev_blog
 db.sqlite3
 /static
 .DS_Store
